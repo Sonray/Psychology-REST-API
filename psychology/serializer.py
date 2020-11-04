@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import *
+from .models import Profile_User, Post, Comment
 
 class UserSerializer(serializers.ModelSerializer)
     Username = serializers.CharField(max_length=100)
