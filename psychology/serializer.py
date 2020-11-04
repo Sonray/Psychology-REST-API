@@ -8,16 +8,16 @@ class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField()
 
 class ProfileSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Profile_User
-        fields = ('Profile_pic', 'User_bio')
+        fields = ('Profile_pic', 'User_bio',)
 
 class PostSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Post
-        fields = ('user_post')
+        fields = ('user_post',)
 
 class CommentSerializer(serializers.ModelSerializer):
-    class meta:
+    class Meta:
         model = Comment
-        fields = ('comment')
+        fields = ('comment',)

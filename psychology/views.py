@@ -13,3 +13,6 @@ class Post_getter(APIView):
         all_merch = Post.objects.all()
         serializers = PostSerializer(all_merch, many=True)
         return Response(serializers.data)
+
+    def post(self, request, format=None):
+        
