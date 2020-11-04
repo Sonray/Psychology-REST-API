@@ -10,14 +10,14 @@ class UserSerializer(serializers.ModelSerializer):
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile_User
-        fields = ('Profile_pic', 'User_bio',)
+        fields = '__all__'
 
 class PostSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
-        fields = ('user_post',)
+        fields = '__all__'
 
 class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Comment
-        fields = ('comment',)
+        fields = '__all__'
