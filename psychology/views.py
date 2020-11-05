@@ -37,20 +37,6 @@ class Get_User_Profile(APIView):
         return Response(serializers.data)
 
 
-class Get_Individual_Post(APIView):
-
-    def get_user(self, pk):
-        try:
-            return Post.objects.get(pk=pk)
-        except Post.DoesNotExist:
-            return Http404
-
-    def get(self,request, pk, format=None):
-        the_user = self.get_user(pk)
-        serializers = UserSerializer(the_user)
-        return Response(serializers.data)
-
-
 class Post_getter(APIView):
 
     permission_classes = (IsAdminOrReadOnly,)
@@ -70,6 +56,19 @@ class Post_getter(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
 
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+class Get_Individual_Post(APIView):
+
+    def get_user(self, pk):
+        try:
+            return Post.objects.get(pk=pk)
+        except Post.DoesNotExist:
+            return Http404
+
+    def get(self,request, pk, format=None):
+        the_user = self.get_user(pk)
+        serializers = PostSerializer(the_user)
+        return Response(serializers.data)
 
 
 class Comment_getter(APIView):
@@ -91,5 +90,19 @@ class Comment_getter(APIView):
             return Response(serializers.data, status=status.HTTP_201_CREATED)
 
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class Get_Individual_Comment(APIView):
+
+    def get_user(self, pk):
+        try:
+            return Comment.objects.get(pk=pk)
+        except Comment.DoesNotExist:
+            return Http404
+
+    def get(self,request, pk, format=None):
+        the_user = self.get_user(pk)
+        serializers = CommentSerializer(the_user)
+        return Response(serializers.data)
 
 # {"token":"8c3f8c4f2448fd1822d97a0efdf9be9f601365d4"}
