@@ -82,7 +82,7 @@ WSGI_APPLICATION = 'psychoAPI.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-if config('MODE')=="prod":
+if config('MODE')=="dev":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
