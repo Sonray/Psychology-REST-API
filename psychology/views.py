@@ -22,6 +22,21 @@ class Register_user(APIView):
 
         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def get_user(self, pk):
+        try:
+            return User_model.objects.get(pk=pk)
+        except User_model.DoesNotExist:
+            return Http404
+
+    def put(self, request, pk, format=None):
+        merch = self.get_user(pk)
+        serializers = UserSerializer(merch, request.data)
+        if serializers.is_valid():
+            serializers.save()
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+
 class Add_Profile(APIView):
 
     def post(self, request, format=None):
@@ -51,16 +66,20 @@ class Get_User_Profile(APIView):
 
 class Update_userprofile(APIView):
 
-    def post(self, request, format=None):
-        serializers = UserSerializer(data=request.data)
+    def get_user(self, pk):
+        try:
+            return Profile_User.objects.get(pk=pk)
+        except User_model.DoesNotExist:
+            return Http404
 
+    def put(self, request, pk, format=None):
+        merch = self.get_user(pk)
+        serializers = ProfileSerializer(merch, request.data)
         if serializers.is_valid():
-
             serializers.save()
-
-            return Response(serializers.data, status=status.HTTP_201_CREATED)
-
-        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(serializers.data)
+        else:
+            return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class Post_getter(APIView):
