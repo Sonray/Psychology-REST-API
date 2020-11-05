@@ -17,6 +17,9 @@ urlpatterns = [
     url(r'^api/get-comment/(?P<pk>[0-9]+)/', views.Get_Individual_Comment.as_view()),
     url(r'^api/update-userprofile/(?P<pk>[0-9]+)/', views.Update_userprofile.as_view()),
     url(r'^api/update-usersign-in/(?P<pk>[0-9]+)/', views.Register_user.as_view()), 
+    url(r'^api/delete-comment/(?P<pk>[0-9]+)/', views.Get_Individual_Comment.as_view()),
+    url(r'^api/delete-post/(?P<pk>[0-9]+)/', views.Get_Individual_Post.as_view()),
+    url(r'^api/delete-user/(?P<pk>[0-9]+)/', views.Register_user.as_view()), 
 
 ]
 if settings.DEBUG:
