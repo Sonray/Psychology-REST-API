@@ -37,6 +37,11 @@ class Register_user(APIView):
         else:
             return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
+    def delete(self, request, pk, format=None):
+        merch = self.get_user(pk)
+        merch.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class Add_Profile(APIView):
 
     def post(self, request, format=None):
@@ -115,6 +120,12 @@ class Get_Individual_Post(APIView):
         serializers = PostSerializer(the_user)
         return Response(serializers.data)
 
+    
+    def delete(self, request, pk, format=None):
+        merch = self.get_user(pk)
+        merch.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 
 class Comment_getter(APIView):
 
@@ -149,5 +160,11 @@ class Get_Individual_Comment(APIView):
         the_user = self.get_user(pk)
         serializers = CommentSerializer(the_user)
         return Response(serializers.data)
+
+    
+    def delete(self, request, pk, format=None):
+        merch = self.get_user(pk)
+        merch.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 # {"token":"8c3f8c4f2448fd1822d97a0efdf9be9f601365d4"}
