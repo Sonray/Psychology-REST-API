@@ -1,11 +1,11 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
-from .models import Profile_User, Post, Comment
+from .models import Profile_User, Post, Comment, User_model
 
 class UserSerializer(serializers.ModelSerializer):
-    Username = serializers.CharField(max_length=100)
-    Email = serializers.EmailField()
-    password = serializers.CharField()
+    class Meta:
+        model = User_model
+        fields = '__all__'
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
