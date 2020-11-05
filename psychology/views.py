@@ -49,18 +49,18 @@ class Get_User_Profile(APIView):
         serializers = ProfileSerializer(the_user)
         return Response(serializers.data)
 
-# class Register_user(APIView):
+class Update_userprofile(APIView):
 
-#     def post(self, request, format=None):
-#         serializers = UserSerializer(data=request.data)
+    def post(self, request, format=None):
+        serializers = UserSerializer(data=request.data)
 
-#         if serializers.is_valid():
+        if serializers.is_valid():
 
-#             serializers.save()
+            serializers.save()
 
-#             return Response(serializers.data, status=status.HTTP_201_CREATED)
+            return Response(serializers.data, status=status.HTTP_201_CREATED)
 
-#         return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializers.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class Post_getter(APIView):
